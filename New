@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>eBook Center</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f8f9fa;
+      color: #333;
+    }
+
+    header {
+      background-color: #1e1e2f;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-size: 1.8em;
+      font-weight: bold;
+    }
+
+    .search-bar {
+      margin: 15px auto;
+      display: flex;
+      justify-content: center;
+    }
+
+    .search-bar input {
+      width: 90%;
+      padding: 10px;
+      font-size: 1em;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    .section {
+      padding: 20px;
+    }
+
+    .section h2 {
+      margin-bottom: 15px;
+      color: #222;
+    }
+
+    .ebook-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 15px;
+    }
+
+    .ebook {
+      background-color: white;
+      padding: 15px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      text-align: center;
+    }
+
+    .ebook img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .ebook-title {
+      margin-top: 10px;
+      font-weight: bold;
+      font-size: 0.95em;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #ffffff;
+      border-top: 1px solid #ddd;
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 0;
+    }
+
+    footer a {
+      text-decoration: none;
+      color: #444;
+      font-size: 0.9em;
+      text-align: center;
+    }
+
+    footer a:hover {
+      color: #000;
+    }
+
+  </style>
+</head>
+<body>
+
+  <header>📚 eBook Center</header>
+
+  <div class="search-bar">
+    <input type="text" placeholder="Search eBooks..." />
+  </div>
+
+  <div class="section">
+    <h2>📖 Featured eBooks</h2>
+    <div class="ebook-grid">
+      <div class="ebook">
+        <img src="https://via.placeholder.com/140x180?text=eBook+1" alt="eBook 1" />
+        <div class="ebook-title">Startup Secrets</div>
+      </div>
+      <div class="ebook">
+        <img src="https://via.placeholder.com/140x180?text=eBook+2" alt="eBook 2" />
+        <div class="ebook-title">GenZ Hustle Guide</div>
+      </div>
+      <div class="ebook">
+        <img src="https://via.placeholder.com/140x180?text=eBook+3" alt="eBook 3" />
+        <div class="ebook-title">Productivity Hacks</div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <a href="#">🏠 Home</a>
+    <a href="#">🔥 New & Hot</a>
+    <a href="#">🔍 Search</a>
+    <a href="#">📚 Library</a>
+    <a href="#">👤 Profile</a>
+  </footer>
+
+</body>
+</html>* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background-color: #fdfcfb;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+header {
+  background-color: #512da8;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+
+nav {
+  display: flex;
+  justify-content: space-around;
+  background: #ede7f6;
+  padding: 0.5rem 0;
+}
+
+nav button {
+  background: transparent;
+  border: none;
+  font-weight: bold;
+  color: #512da8;
+  cursor: pointer;
+}
+
+main {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+.tab {
+  display: none;
+}
+
+.tab.active {
+  display: block;
+}
+
+#ebook-list, #new-ebooks, #search-results {
+  margin-top: 1rem;
+}
+
+.ebook-card {
+  padding: 10px;
+  border: 1px solid #ccc;
+  margin: 0.5rem 0;
+  border-radius: 10px;
+  background: #f9f8fd;
+}
+
+footer {
+  text-align: center;
+  padding: 0.75rem;
+  background: #ede7f6;
+  font-size: 0.9rem;
+}const ebooks = [
+  { title: "GenZ Side Hustle Guide", link: "https://example.com/hustle.pdf", hot: true },
+  { title: "Digital Skills 101", link: "https://example.com/skills.pdf", hot: false },
+];
+
+function showTab(tabId) {
+  document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+  document.getElementById(tabId).classList.add('active');
+  if (tabId === 'all') renderEbooks();
+  if (tabId === 'new') renderNewEbooks();
+}
+
+function renderEbooks() {
+  const list = document.getElementById('ebook-list');
+  list.innerHTML = '';
+  ebooks.forEach(ebook => {
+    list.innerHTML += `<div class="ebook-card">
+      <strong>${ebook.title}</strong><br/>
+      <a href="${ebook.link}" target="_blank">📖 Read / Download PDF</a>
+    </div>`;
+  });
+}
+
+function renderNewEbooks() {
+  const list = document.getElementById('new-ebooks');
+  list.innerHTML = '';
+  ebooks.filter(e => e.hot).forEach(ebook => {
+    list.innerHTML += `<div class="ebook-card">
+      <strong>${ebook.title}</strong><br/>
+      <a href="${ebook.link}" target="_blank">🔥 Read / Download PDF</a>
+    </div>`;
+  });
+}
+
+function searchEbooks(query) {
+  const results = document.getElementById('search-results');
+  results.innerHTML = '';
+  ebooks.filter(e => e.title.toLowerCase().includes(query.toLowerCase()))
+    .forEach(ebook => {
+      results.innerHTML += `<div class="ebook-card">
+        <strong>${ebook.title}</strong><br/>
+        <a href="${ebook.link}" target="_blank">🔍 Read / Download PDF</a>
+      </div>`;
+    });
+}
+
+function uploadEbook() {
+  const title = document.getElementById('ebookTitle').value;
+  const link = document.getElementById('ebookLink').value;
+  if (title && link) {
+    ebooks.push({ title, link, hot: true });
+    alert("eBook uploaded successfully!");
+    document.getElementById('ebookTitle').value = '';
+    document.getElementById('ebookLink').value = '';
+  } else {
+    alert("Please enter both title and PDF link.");
+  }
+}
